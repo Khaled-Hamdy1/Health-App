@@ -2,6 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import userImg from "../assets/user.png";
 
 export default function ProfileMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -23,9 +24,9 @@ export default function ProfileMenu() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <div className="text-white font-bold ">
-            {/* <img src="../assets/user.png" alt="user Image" /> */}
-          Khaled Hamdy
+        <div className="px-2 py-1 text-black font-bold flex items-center gap-4 bg-white rounded-md">
+          <img src={userImg} alt="user Image" className="w-10  rounded-full" />
+          <p className="tracking-">Ashraf Mohamed</p>
         </div>
       </Button>
       <Menu

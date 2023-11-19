@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Card from "./Card";
-import { faHeartPulse, faHeartbeat, faLungs } from "@fortawesome/free-solid-svg-icons";
+import { faHeartbeat, faLungs } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -26,7 +26,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#26648e]">
       <Header />
-      <div className="flex flex-wrap justify-around py-10">
+      <div className="flex flex-wrap justify-around py-10 gap-4">
         <div className="min-w-[300px] w-1/3 flex flex-col gap-4 justify-around">
         <Card {...heartRateData} />
         <Card {...oxygenData} />
