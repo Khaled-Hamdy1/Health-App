@@ -6,16 +6,7 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { makeStyles } from "@mui/styles";
 import { useState } from "react";
-
-const useStyles = makeStyles(() => ({
-  calendarContainer: {
-    maxWidth: "min(100%, 400px)",
-    backgroundColor: "#53d2dc",
-    borderRadius: "16px",
-  },
-}));
 
 export default function App() {
   const heartRateData = {
@@ -31,8 +22,7 @@ export default function App() {
     unit: "%",
     icon: faLungs,
   };
-  const [value, setValue] = useState(dayjs("2022-04-17"));
-  const classes = useStyles();
+  const [value, setValue] = useState(dayjs("2022-04-17"));  
   return (
     <div className="min-h-screen bg-[#26648e]">
       <Header />
@@ -46,7 +36,7 @@ export default function App() {
             <DemoItem label="Patient History">
               <DateCalendar
                 value={value}
-                className={classes.calendarContainer}
+                className="max-w-[400px] bg-[#53d2dc] rounded-2xl"
                 onChange={(newValue) => setValue(newValue)}
               />
             </DemoItem>
