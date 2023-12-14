@@ -10,10 +10,12 @@ export default function Card({ title, value, unit, icon }) {
           {value} {unit}
         </p>
       </article>
-      <FontAwesomeIcon
-        icon={icon}
-        className="card__icon text-blue-500 text-6xl mr-2"
-      />
+      <div className="w-20 flex justify-center">
+        <FontAwesomeIcon
+          icon={icon}
+          className="card__icon text-blue-500 text-6xl"
+        />
+      </div>
     </div>
   );
 }
