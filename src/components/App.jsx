@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Card from "./Card";
-import { faHeartbeat, faLungs, faTemperature0, faTemperature1, faTemperatureFull } from "@fortawesome/free-solid-svg-icons";
+import { faHeartbeat, faLungs, faTemperatureFull } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
