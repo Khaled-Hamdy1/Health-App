@@ -20,6 +20,8 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.6",
     "@mui/system": "^5.14.18",
     "@mui/x-date-pickers": "^6.18.1",
+    "@supabase/realtime-js": "^2.9.0",
+    "@supabase/supabase-js": "^2.39.0",
     "axios": "^1.6.1",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",

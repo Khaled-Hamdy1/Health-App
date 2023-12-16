@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from "react";
 
-export default function useGoogleSheetData(
-  API_KEY,
-  SPREADSHEET_ID,
-  SPREADSHEET_NAME
-) {
+export default function useGoogleSheetData() {
   const [lastValue, setLastValue] = useState(null);
 
+  const API_KEY = "AIzaSyAg_0U3GY6YvuiZTabTyFojHBYb8SjIKcI";
+  const SPREADSHEET_ID = "176A6OYUNa5Zz3lqjYkscXZKAu3cV2lcGAldR6pOA1QQ";
+  const SPREADSHEET_NAME = "HB";
+  
   useEffect(() => {
     // const int = setInterval(() => {
       const loadGoogleApi = async () => {
