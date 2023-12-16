@@ -12,6 +12,7 @@ import useGetUserData from "../hooks/useGetUserData";
 
 export default function App() {
   // define the data states
+  const [date, setDate] = useState(dayjs(new Date()));
   const [heartRate, setHeartRate] = useState(0);
   const [oxygenLevel, setOxygenLevel] = useState(0);
   const [fullName, setFullName] = useState("Ashish");
@@ -27,8 +28,7 @@ export default function App() {
     }
   }, [loading, data]);
 
-  const [value, setValue] = useState(dayjs(new Date()));
-  console.log(value.date(), value.month(), value.year());
+  console.log(date.date(), date.month(), date.year());
   const heartRateData = {
     title: "Heart Rate",
     value: heartRate,
@@ -56,9 +56,9 @@ export default function App() {
           <DemoContainer components={["DateCalendar", "DateCalendar"]}>
             <DemoItem label="Patient History">
               <DateCalendar
-                value={value}
+                value={date}
                 className="max-w-[400px] bg-[#53d2dc] rounded-2xl"
-                onChange={(newValue) => setValue(newValue)}
+                onChange={(newValue) => setDate(newValue)}
               />
             </DemoItem>
           </DemoContainer>

@@ -9,10 +9,6 @@ const useGetUserData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
-        setError(null);
-
-        // Fetch data from Supabase
         const { data, error } = await supabase.from('user_profiles')
         .select('*');
 
@@ -20,10 +16,10 @@ const useGetUserData = () => {
           throw new Error(error.message);
         }
 
-        setData(data[0]);
-        setLoading(false);
+        setData(data.at(-1));
       } catch (error) {
         setError(error.message);
+      } finally {
         setLoading(false);
       }
     };
