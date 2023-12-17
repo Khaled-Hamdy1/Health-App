@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import userImg from "../assets/user.png";
 
-export default function ProfileMenu() {
+export default function ProfileMenu({fullName}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -26,7 +27,7 @@ export default function ProfileMenu() {
       >
         <div className="px-2 py-1 text-black font-bold flex items-center gap-4 bg-white rounded-md">
           <img src={userImg} alt="user Image" className="w-10  rounded-full" />
-          <p className="tracking-">Ashraf Mohamed</p>
+          <p className="tracking-">{fullName || 'Ragab El7arak'}</p>
         </div>
       </Button>
       <Menu
