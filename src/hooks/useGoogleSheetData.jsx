@@ -9,7 +9,7 @@ export default function useGoogleSheetData() {
   const SPREADSHEET_NAME = "HB";
   
   useEffect(() => {
-    // const int = setInterval(() => {
+    const int = setInterval(() => {
       const loadGoogleApi = async () => {
         return new Promise((resolve) => {
           const script = document.createElement("script");
@@ -52,8 +52,8 @@ export default function useGoogleSheetData() {
         }
       };
       fetchData();
-    // }, 1000);
-    // return () => clearInterval(int);
+    }, 15000);
+    return () => clearInterval(int);
   }, [API_KEY, SPREADSHEET_ID, SPREADSHEET_NAME]);
   const userData = {
     heart_rate: lastValue?.[0],
