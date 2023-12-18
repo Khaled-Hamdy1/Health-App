@@ -7,8 +7,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { useState } from "react";
-// import useGoogleSheetData from "../hooks/useGoogleSheetData";
-import useGetUserData from "../hooks/useGetUserData";
+import useGoogleSheetData from "../hooks/useGoogleSheetData";
+// import useGetUserData from "../hooks/useGetUserData";
 import emailJs from "../services/emailJs";
 
 const heartRateData = {
@@ -27,7 +27,9 @@ export default function App() {
   // define the data states
   const [date, setDate] = useState(dayjs(new Date()));
   // get data from api
-  const { data, loading } = useGetUserData();
+  // const { data, loading } = useGetUserData();
+  const data = useGoogleSheetData();
+  const loading = data === null;
 
   console.log(date.date(), date.month(), date.year());
 
@@ -43,7 +45,7 @@ export default function App() {
       <div className="flex flex-wrap justify-around py-10 gap-4">
         <div className="min-w-[300px] w-1/3 flex flex-col gap-4 justify-around">
           <Card {...{ ...heartRateData, value: data?.heart_rate, loading }} />
-          <Card {...{ ...oxygenData, value: data?.heart_rate, loading }} />
+          <Card {...{ ...oxygenData, value: data?.oxygen_level, loading }} />
         </div>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DateCalendar", "DateCalendar"]}>

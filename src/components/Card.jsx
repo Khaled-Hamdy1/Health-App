@@ -8,7 +8,7 @@ export default function Card({ title, value, unit, icon, loaded }) {
     <div className="card bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
       <article>
         <h2 className="text-xl font-semibold">{title}</h2>
-        {loaded ? (
+        {loaded || value == -1 ? (
           <Box sx={{ display: "flex" }}>
             <p className="text-3xl font-bold mb-4">
               <CircularProgress /> {unit}

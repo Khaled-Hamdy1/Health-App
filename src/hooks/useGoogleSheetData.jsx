@@ -55,5 +55,10 @@ export default function useGoogleSheetData() {
     // }, 1000);
     // return () => clearInterval(int);
   }, [API_KEY, SPREADSHEET_ID, SPREADSHEET_NAME]);
-  return lastValue;
+  const userData = {
+    heart_rate: lastValue?.[0],
+    oxygen_level: lastValue?.[1],
+    full_name: "Ashraf Mohamed",
+  }
+  return userData;
 }

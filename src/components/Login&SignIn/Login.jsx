@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./login.css";
-import { Navigate, useNavigate } from "react-router-dom";
-
+// import { Navigate, useNavigate } from "react-router-dom";
 export default function Login() {
   // get current user from local storage
   let [currentuser,setCurrentUser] =useState(localStorage.getItem("user") || "none");
