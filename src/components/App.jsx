@@ -11,6 +11,8 @@ import useGetUserData from "../hooks/useGetUserData";
 import emailJs from "../services/emailJs";
 import { useNavigate } from "react-router-dom";
 import { use } from "echarts";
+import { useSocket } from "../hooks/useSocket";
+import { socket } from "../Main";
 
 const heartRateData = {
   title: "Heart Rate",
@@ -30,8 +32,12 @@ export default function App() {
   const navigate = useNavigate();
   const userData = JSON.parse(localStorage.getItem("user"));
   const data = useGetUserData();
+  const socketData = useSocket();
+
   useEffect(() => {
-  if(!userData) navigate("/");
+    if (!userData) navigate("/");
+
+    socket.emit("newUser", userData?.id);
   }, []);
   const loading = data === null;
 
