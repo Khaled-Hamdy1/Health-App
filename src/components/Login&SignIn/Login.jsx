@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./login.css";
 import useGetUserData from "../../hooks/useGetUserData";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoginInput from "./LoginInput";
 // import { Navigate, useNavigate } from "react-router-dom";
 export default function Login() {
@@ -13,7 +13,6 @@ export default function Login() {
   const { data, loading } = useGetUserData("users");
   const navigate = useNavigate();
 
-
   function handleSignInSubmit(e) {
     e.preventDefault();
     const postData = {
@@ -22,39 +21,49 @@ export default function Login() {
       doctor_email: drEmail,
       password: password,
     };
-    if(loading) return;
-    const userExist =  data.username === userName;
-    if(!userExist) {
+    if (loading) return;
+    let userExist = false; 
+    data.forEach(el => { 
+      if (el.username === userName)
+        userExist = true;
+    });
+    if (!userExist) {
       fetch(`https://ctfuvqknojlnfxlkqccc.supabase.co/rest/v1/users`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'apikey': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0ZnV2cWtub2psbmZ4bGtxY2NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI2NjQ4NTYsImV4cCI6MjAxODI0MDg1Nn0.7Q4Xtp_kJuo7dMeZuAF0ZZKRShJidQvfUSeGmjljvWs",
+          "Content-Type": "application/json",
+          apikey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0ZnV2cWtub2psbmZ4bGtxY2NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI2NjQ4NTYsImV4cCI6MjAxODI0MDg1Nn0.7Q4Xtp_kJuo7dMeZuAF0ZZKRShJidQvfUSeGmjljvWs",
         },
         body: JSON.stringify(postData),
       })
-        .then(data => {
-          console.log('Data posted successfully:', data);
+        .then((data) => {
+          console.log("Data posted successfully:", data);
         })
-        .catch(error => {
-          console.error('Error posting data:', error);
+        .catch((error) => {
+          console.error("Error posting data:", error);
         });
-        alert("User created successfully");
-        return;
-      }else {
+      alert("User created successfully");
+    } else {
       alert("Username already exist");
-      // setRegister(false);
     }
+    setUserName("");
+    setFullName("");
+    setDrEmail("");
+    setPassword("");
   }
 
   function handleLogInSubmit(e) {
     e.preventDefault();
-    const userExist = (data.username=== userName && password === data.password);
-    console.log(data.username, userName, password, data.password);
-    if(userExist) {
-      localStorage.setItem("user", JSON.stringify(data));
+    let user = {},userExist = false; 
+    data.forEach(el => {
+      if (el.username === userName && password === el.password)
+        user = el, userExist = true;
+    });
+    if (userExist) {
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/dashboard");
-    }else {
+    } else {
       alert("Wrong username or password");
     }
   }
@@ -64,10 +73,27 @@ export default function Login() {
       <div className="form signup">
         <header onClick={() => setRegister(false)}>Signup</header>
         <form onSubmit={handleSignInSubmit}>
-          <LoginInput value={fullName} setValue={setFullName} placeholder={"Full name"} />
-          <LoginInput value={userName} setValue={setUserName} placeholder={"Username"} />
-          <LoginInput value={drEmail} setValue={setDrEmail} placeholder={"Doctor Email"} />
-          <LoginInput value={password} setValue={setPassword} placeholder={"Password"} />
+          <LoginInput
+            value={fullName}
+            setValue={setFullName}
+            placeholder={"Full name"}
+          />
+          <LoginInput
+            value={userName}
+            setValue={setUserName}
+            placeholder={"Username"}
+          />
+          <LoginInput
+            value={drEmail}
+            setValue={setDrEmail}
+            placeholder={"Doctor Email"}
+          />
+          <LoginInput
+            value={password}
+            setValue={setPassword}
+            placeholder="Password"
+            type="password"
+          />
           <button type="submit" className="login-btn">
             Signup
           </button>
@@ -77,8 +103,17 @@ export default function Login() {
       <div className="form login">
         <header onClick={() => setRegister(true)}>Login</header>
         <form onSubmit={handleLogInSubmit}>
-          <LoginInput value={userName} setValue={setUserName} placeholder={"Username"} />
-          <LoginInput value={password} setValue={setPassword} placeholder={"Password"} />
+          <LoginInput
+            value={userName}
+            setValue={setUserName}
+            placeholder={"Username"}
+          />
+          <LoginInput
+            value={password}
+            setValue={setPassword}
+            placeholder="Password"
+            type="password"
+          />
           <button type="submit" className="login-btn">
             Login
           </button>

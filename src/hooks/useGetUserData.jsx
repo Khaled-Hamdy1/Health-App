@@ -16,7 +16,7 @@ const useGetUserData = (table) => {
           throw new Error(error.message);
         }
 
-        setData(data.at(-1));
+        setData(data);
       } catch (error) {
         setError(error.message);
       } finally {
