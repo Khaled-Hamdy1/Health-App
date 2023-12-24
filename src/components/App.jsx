@@ -6,9 +6,11 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { useState } from "react";
-// import useGetUserData from "../hooks/useGetUserData";
+import { useEffect, useState } from "react";
+import useGetUserData from "../hooks/useGetUserData";
 import emailJs from "../services/emailJs";
+import { useNavigate } from "react-router-dom";
+import { use } from "echarts";
 
 const heartRateData = {
   title: "Heart Rate",
@@ -25,21 +27,25 @@ const oxygenData = {
 export default function App() {
   // define the data states
   const [date, setDate] = useState(dayjs(new Date()));
-  const data = JSON.parse(localStorage.getItem("user"));
-  // const data = useGoogleSheetData();
+  const navigate = useNavigate();
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const data = useGetUserData();
+  useEffect(() => {
+  if(!userData) navigate("/");
+  }, []);
   const loading = data === null;
 
   console.log(date.date(), date.month(), date.year());
 
   const emailData = {
-    user_name: data?.full_name,
-    user_email: data?.doctor_email,
+    user_name: userData?.full_name,
+    user_email: userData?.doctor_email,
     message: "Hello doctor, I am not feeling well.",
   };
 
   return (
     <div className="w-full min-h-screen bg-[#26648e]">
-      <Header fullName={data?.full_name} />
+      <Header fullName={userData?.full_name} />
       <div className="flex flex-wrap justify-around py-10 gap-4">
         <div className="min-w-[300px] w-1/3 flex flex-col gap-4 justify-around">
           <Card {...{ ...heartRateData, value: data?.heart_rate, loading }} />
