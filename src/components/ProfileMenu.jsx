@@ -27,7 +27,7 @@ export default function ProfileMenu({fullName}) {
       >
         <div className="px-2 py-1 text-black font-bold flex items-center gap-4 bg-white rounded-md">
           <img src={userImg} alt="user Image" className="w-10  rounded-full" />
-          <p className="tracking-">{fullName || 'Ragab El7arak'}</p>
+          <p className="tracking-">{fullName || 'Ashraf'}</p>
         </div>
       </Button>
       <Menu

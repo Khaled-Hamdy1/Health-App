@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import  supabase from '../services/supabase';
 
-const useGetUserData = () => {
+const useGetUserData = (table) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,7 +9,7 @@ const useGetUserData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await supabase.from('user_profiles')
+        const { data, error } = await supabase.from(table)
         .select('*');
 
         if (error) {

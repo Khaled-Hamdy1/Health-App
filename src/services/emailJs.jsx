@@ -10,6 +10,7 @@ export default function emailJs({user_name, user_email, message}) {
       user_email: user_email,
       message: message,
     };
+    console.log(templateParams);
     // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual service and template IDs
     emailjs.send(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, templateParams, USER_ID)
       .then((result) => {
